@@ -1,49 +1,108 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from './MetaData'
 import { getProducts } from '../layouts/actions/productActions'
-
+import Product from '../product/Product';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from './Loader';
+import Pagination from 'react-js-pagination';
+import { useAlert } from 'react-alert';
+
+import { useParams } from 'react-router-dom'
 
 const Home = () => {
 
-  const dispatch = useDispatch();
+    const [currentPage, setCurrentPage ] = useState(1)
+    const [category, setCategory] = useState('')
 
+    const categories =[
+        'Electronics',
+                'Cameras',
+                'Laptops',
+                'Accessories',
+                'Headphones',
+                'Food',
+                "Books",
+                'Clothes/Shoes',
+                'Beauty/Health',
+                'Sports',
+                'Outdoor',
+                'Home'
+    ]
+
+    const alert = useAlert();
+    const dispatch = useDispatch();
+
+    const { loading, products, error, productsCount, resPerPage, filteredProductsCount  } = useSelector(state => state.products )
+
+
+    const params = useParams()
+    const keyword = params.keyword
+
+
+
+    console.log('params.keyword :>> ', params.keyword);
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch])
+        if(error) {
+            alert.error(error)
+        }
+
+    dispatch(getProducts(keyword, currentPage, category));
 
 
+  }, [dispatch,alert, error, currentPage, keyword, category])
+
+  function setCurrentPageNo(pageNumber) {
+      setCurrentPage(pageNumber)
+}
+    
+    let count = productsCount;
+    if (keyword) {
+        count = filteredProductsCount
+    }
+
+  
   return (
     <Fragment>
-    <MetaData title={'VeggieMate'}/>
-      <h1 id="products_heading">Latest Products</h1>
-      <section id="products" className="container mt-5">
-      <div className="row">
-        <div className="col-sm-12 col-md-6 col-lg-3 my-3">
-          <div className="card p-3 rounded">
-            <img
-              className="card-img-top mx-auto"
-              src="https://m.media-amazon.com/images/I/617NtexaW2L._AC_UY218_.jpg"
-            alt="stuff" />
-            <div className="card-body d-flex flex-column">
-              <h5 className="card-title">
-                <a href="#">128GB Solid Storage Memory card - SanDisk Ultra</a>
-              </h5>
-              <div className="ratings mt-auto">
-                <div className="rating-outer">
-                  <div className="rating-inner"></div>
-                </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
-              </div>
-              <p className="card-text">$45.67</p>
-              <a href="#" id="view_btn" className="btn btn-block">View Details</a>
-            </div>
-          </div>
-        </div>
-        </div>
-    </section>
+        {loading ? <Loader /> : (
+            <Fragment>
+                <MetaData title={'VeggieMate to the rescue!'} />
+
+                <h1 id="products_heading">Latest Products</h1>
+
+                <section id="products" className="container mt-5">
+                    <div className="row">
+                    {products && products.map(product => (
+                      <Product key={ product._id} product={product}/>
+                    ))}
+                        
+
+                    </div>
+                </section>
+
+                {resPerPage <= count && (
+                        <div className="d-flex justify-content-center mt-5">
+                            <Pagination
+                                activePage={currentPage}
+                                itemsCountPerPage={resPerPage}
+                                totalItemsCount={productsCount}
+                                onChange={setCurrentPageNo}
+                                nextPageText={'Next'}
+                                prevPageText={'Prev'}
+                                firstPageText={'First'}
+                                lastPageText={'Last'}
+                                itemClass="page-item"
+                                linkClass="page-link"
+                            />
+                        </div>
+                    )}
+
+
+
+            </Fragment>
+        )}
+
     </Fragment>
-  )
+)
 }
 
 export default Home
