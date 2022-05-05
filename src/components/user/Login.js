@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+//, useLocation
 import { Fragment, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert';
@@ -7,80 +8,38 @@ import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader';
 import { login, clearErrors } from '../layouts/actions/authActions';
 import { useNavigate } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
+const Login = ({ history, location }) => {
 
-const Login = () => {
-  
-    const dispatch= useDispatch();
-    const alert=useAlert();
-    
-    const [email,setEmail]=useState('');
-    const [password,setPassword]=useState('');
-    
-    // const initialValues = { email: "", password: "" };
-    // const [formValues, setFormValues] = useState(initialValues);
-    // const [formErrors, setFormErrors] = useState({});
-    // const [isSubmit, setIsSubmit] = useState(false);
-    let navigate=useNavigate();
-  
-    let location = useLocation();
-    const {isAuthenticated,error,loading,failed,user}=useSelector(state =>state.auth);
-    // const redirect=location.search ? location.search.split('=')[1] : '/'
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    useEffect(()=>{
-      
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const { isAuthenticated, error, loading } = useSelector(state => state.auth);
+
+  const redirect = location ? location.split('=')[1] : '/'
+
+  useEffect(() => {
+
       if (isAuthenticated) {
-      
-        navigate('/dashboard')       
+          history.push(redirect)
       }
-     
+
       if (error) {
-          alert.error(error)
-          dispatch(clearErrors)
+          alert.error(error);
+          dispatch(clearErrors());
       }
-      
-    
-    }, [dispatch, alert, isAuthenticated, error, navigate])
+
+  }, [dispatch, alert, isAuthenticated, error, history, redirect])
   
-  //   const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormValues({ ...formValues, [name]: value });
-  // };
 
   const submitHandle = (e) => {
-      e.preventDefault()
-      dispatch(login(email,password));
-        
-  }  
-  
-  // useEffect(() => {
-  //   console.log(formErrors);
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     console.log(formValues);
-  //   }
-  // }, [formErrors, isSubmit, formValues]);
-  
-  // const validate = (values) => {
-  //   const errors = {};
-  //   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-  //   if (!values.username) {
-  //     errors.username = "Username is required!";
-  //   }
-  //   if (!values.email) {
-  //     errors.email = "Email is required!";
-  //   } else if (!regex.test(values.email)) {
-  //     errors.email = "This is not a valid email format!";
-  //   }
-  //   if (!values.password) {
-  //     errors.password = "Password is required";
-  //   } else if (values.password.length < 4) {
-  //     errors.password = "Password must be more than 4 characters";
-  //   } else if (values.password.length > 20) {
-  //     errors.password = "Password cannot exceed more than 20 characters";
-  //   }
-  //   return errors;
-  // };
-
+    e.preventDefault();
+    dispatch(login(email, password))
+}
       return (
         <Fragment>
        

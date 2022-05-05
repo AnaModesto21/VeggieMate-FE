@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'; //interact with a Redux store's dispatch and ge
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productsReducer, productDetailsReducer } from './reducers/productsReducer'
 
-import { authReducer } from './reducers/authReducer';
+import { authReducer } from './reducers/authReducers';
 import { cartReducer } from './reducers/cartReducers';
 
 
@@ -17,9 +17,14 @@ const reducer = combineReducers({
 //put cart items on array after update
 let initialState = {
     cart: {
-        cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
-    }
-}
+      cartItems: localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : [],
+      shippingInfo: localStorage.getItem("shippingInfo")
+        ? JSON.parse(localStorage.getItem("shippingInfo"))
+        : {},
+    },
+  };
 
 const middleware = [thunk]
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))

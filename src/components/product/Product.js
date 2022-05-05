@@ -5,11 +5,11 @@ import ProductDetails from './ProductDetails.js'
 const Product = ({ product}) => {
   return (
     <div>
-      <div className="col-sm-12 col-md-6 col-lg-3 my-3">
+      <div className="col-sm-6 col-md-6 col-lg-12 my-3">
           <div className="card p-3 rounded">
               <img
                     className="card-img-top mx-auto"
-                    src={product.images[0].url} alt="fnfnfnnffn"
+                    src={product.images[0].url} alt={product.name}
                 />
             <div className="card-body d-flex flex-column">
               <h5 className="card-title">
