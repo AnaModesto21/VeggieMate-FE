@@ -11,14 +11,14 @@ import {
 
 } from '../../../constants/productConstants'
 
-export const getProducts = (keyword = '', currentPage = 1, price) => async (dispatch) => {
+export const getProducts = ( keyword = '', currentPage = 1 ) => async (dispatch) => {
     try{
 
         dispatch ({ type: ALL_PRODUCTS_REQUEST})
 
-        let link = `products?keyword=${keyword}&page=${currentPage}}`
+        // let link = `products?keyword=${keyword}&page=${currentPage}}`
 
-        const {data } = await axios.get(link)
+        const { data } = await axios.get(`products?keyword=${keyword}&page=${currentPage}`)
 
         dispatch ({
             type: ALL_PRODUCTS_SUCCESS,

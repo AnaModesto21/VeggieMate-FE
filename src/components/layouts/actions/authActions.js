@@ -51,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/login', { email, password }, config)
+        const { data } = await axios.post('auth/login', { email, password }, config)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -77,7 +77,7 @@ export const register = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/register', userData, config)
+        const { data } = await axios.post('auth/register', userData, config)
 
         dispatch({
             type: REGISTER_USER_SUCCESS,

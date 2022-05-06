@@ -38,18 +38,15 @@ const Home = () => {
     const params = useParams()
     const keyword = params.keyword
 
-
-
-    console.log('params.keyword :>> ', params.keyword);
   useEffect(() => {
         if(error) {
             alert.error(error)
         }
 
-    dispatch(getProducts(keyword, currentPage, category));
+    dispatch(getProducts(keyword, currentPage));
 
 
-  }, [dispatch,alert, error, currentPage, keyword, category])
+  }, [dispatch,alert, error, currentPage, keyword])
 
   function setCurrentPageNo(pageNumber) {
       setCurrentPage(pageNumber)
