@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
-import Home from './components/layouts/Home';
+import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -23,7 +23,7 @@ function App() {
               <Route path="/shipping" element={<Shipping />} /> 
               {/* mudar shipping route para protected route */}
               <Route path="/:id" element={<ProductDetails />} />
-              <Route  path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
           </Routes>

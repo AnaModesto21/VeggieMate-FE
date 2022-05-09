@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import MetaData from './MetaData'
-import { getProducts } from '../layouts/actions/productActions'
-import Product from '../product/Product';
+import MetaData from './layouts/MetaData'
+import { getProducts } from './layouts/actions/productActions'
+import Product from './product/Product';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from './Loader';
+import Loader from './layouts/Loader';
 import Pagination from 'react-js-pagination';
 import { useAlert } from 'react-alert';
 

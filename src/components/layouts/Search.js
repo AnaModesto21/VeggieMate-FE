@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { withRouter } from "react-router";
 
 const Search = ({ history }) => {
 
@@ -8,9 +9,9 @@ const Search = ({ history }) => {
         e.preventDefault()
 
         if (keyword.trim()) {
-            history.pushState(`/search/${keyword}`)
+            history.push(`/search/${keyword}`)
         } else {
-            history.pushState('/')
+            history.push('/')
         }
     }
 
