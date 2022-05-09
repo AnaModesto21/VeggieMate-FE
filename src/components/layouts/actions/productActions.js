@@ -35,6 +35,7 @@ import {
 
 const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
 
+
 export const getProducts = ( keyword = '', currentPage = 1 ) => async (dispatch) => {
     try{
 
@@ -42,13 +43,14 @@ export const getProducts = ( keyword = '', currentPage = 1 ) => async (dispatch)
 
         // let link = `products?keyword=${keyword}&page=${currentPage}}`
 
-        const { data } = await axios.get(`${baseURL}?keyword=${keyword}&page=${currentPage}`)
+        const { data } = await axios.get(`${baseURL}?page=${currentPage}`)
+
 
         dispatch ({
             type: ALL_PRODUCTS_SUCCESS,
             payload: data
         })
-
+        console.log('data.message :>> ', data.message)
     } catch (error) {
         dispatch ({
             type: ALL_PRODUCTS_FAIL,
@@ -56,6 +58,8 @@ export const getProducts = ( keyword = '', currentPage = 1 ) => async (dispatch)
         })
     }
 }
+
+
 
 export const newProduct = (productData) => async (dispatch) => {
     try {
