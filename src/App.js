@@ -7,9 +7,9 @@ import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
-
+import ProtectedRoute from './components/route/ProtectedRoute'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
+import Profile from './components/user/Profile'
 
 function App() {
   return (
@@ -25,6 +25,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+
+              <ProtectedRoute path="/me" element={<Profile />} exact />
           </Routes>
         </div>
         <Footer />
