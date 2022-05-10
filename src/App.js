@@ -7,7 +7,7 @@ import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
-import ProtectedRoute from './components/route/ProtectedRoute'
+import ProtectedRoute from './components/route/ProtectedRoutes'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Profile from './components/user/Profile'
 
