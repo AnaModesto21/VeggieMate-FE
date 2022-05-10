@@ -105,7 +105,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: LOAD_USER_REQUEST })
 
 
-        const { data } = await axios.get(`${baseURL}auth/my_profile`)
+        const { data } = await axios.get(`${baseURL}auth/me`)
 
         dispatch({
             type: LOAD_USER_SUCCESS,
