@@ -63,12 +63,12 @@ const ProductDetails = () => {
 
         <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-            {/* <img className="d-block w-100" src={product.images.url} alt={product.title} /> */}
+            {/* <img className="d-block w-100" src={product.images[0].url} alt={product.title} /> */}
             </div>
 
             <div className="col-12 col-lg-5 mt-5">
                 <h3>{product.name}</h3>
-                <p id="product_id">Product # {product.id}</p>
+                <p id="product_id">Product # {product._id}</p>
                 {console.log('asd', params.id)}
 
                 <hr />
