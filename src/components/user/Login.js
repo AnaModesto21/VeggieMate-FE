@@ -8,9 +8,11 @@ import { useLocation } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../layouts/actions/authActions'
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ history }) => {
+const Login = () => {
 
+  const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -24,7 +26,7 @@ const Login = ({ history }) => {
     useEffect(() => {
 
         if (isAuthenticated) {
-            history.push(redirect)
+            navigate(redirect)
         }
 
         if (error) {
@@ -32,7 +34,7 @@ const Login = ({ history }) => {
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error, history, redirect])
+    }, [dispatch, alert, isAuthenticated, error, navigate, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault();

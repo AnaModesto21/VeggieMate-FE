@@ -21,7 +21,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/search/:keyword" element={<Home />} />
               <Route path="/shipping" element={<Shipping />} /> 
-              {/* mudar shipping route para protected route */}
               <Route path="/:id" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />

@@ -1,12 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import MetaData from '../layouts/MetaData'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../layouts/actions/authActions'
 
-const Register = ({ history }) => {
+const Register = () => {
+
+  const navigate = useNavigate();
 
     const [user, setUser] = useState({
         name: '',
@@ -25,17 +27,18 @@ const Register = ({ history }) => {
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
 
     useEffect(() => {
-
-        if (isAuthenticated) {
-            history.push('/')
-        }
+        console.log('called use effect', user);
+         if (isAuthenticated) {
+          console.log('called use effect isAuthenticated', user);
+          //navigate('/')
+         }
 
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error, history])
+    }, [dispatch, alert, isAuthenticated, error, navigate])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -46,7 +49,7 @@ const Register = ({ history }) => {
         formData.set('password', password);
         formData.set('avatar', avatar);
 
-        dispatch(register(formData))
+        dispatch(register(formData));
     }
 
     const onChange = e => {
