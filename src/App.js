@@ -45,8 +45,8 @@ import NewPassword from './components/user/NewPassword'
 // import UpdateUser from './components/admin/UpdateUser'
 // import ProductReviews from './components/admin/ProductReviews'
 
-// import { Elements } from '@stripe/react-stripe-js'
-// import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Profile from './components/user/Profile'
@@ -153,10 +153,10 @@ function App() {
 />              
 {stripeApiKey &&
             <Elements stripe={loadStripe(stripeApiKey)}>
-              <ProtectedRoute path="/payment" component={Payment} />
+              <ProtectedRoutes path="/payment" component={Payment} />
             </Elements>
           }
-          
+
           </Routes>
         </div>
         {!loading && (!isAuthenticated || user.role !== 'admin') && (
