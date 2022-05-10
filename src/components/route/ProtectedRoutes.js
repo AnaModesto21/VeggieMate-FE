@@ -2,14 +2,15 @@ import React, { Fragment } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
+const ProtectedRoutes = ({ isAdmin, component: Component, ...rest }) => {
 
     const { isAuthenticated, loading, user } = useSelector(state => state.auth)
 
     return (
         <Fragment>
             {loading === false && (
-                <Router
+                <Routes>
+                <Route
                     {...rest}
                     render={props => {
                         if (isAuthenticated === false) {
@@ -23,9 +24,10 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
                         return <Component {...props} />
                     }}
                 />
+                </Routes>
             )}
         </Fragment>
     )
 }
 
-export default ProtectedRoute
+export default ProtectedRoutes
