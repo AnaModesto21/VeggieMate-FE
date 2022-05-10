@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+// import { MDBDataTable } from 'mdbreact'
 
-import MetaData from '../layout/MetaData'
-import Loader from '../layout/Loader'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { myOrders, clearErrors } from '../../actions/orderActions'
+import { myOrders, clearErrors } from '../layouts/actions/orderActions'
 
 const ListOrders = () => {
 
@@ -83,13 +83,13 @@ const ListOrders = () => {
             <h1 className="my-5">My Orders</h1>
 
             {loading ? <Loader /> : (
-                <MDBDataTable
+                {/* <MDBDataTable
                     data={setOrders()}
                     className="px-3"
                     bordered
                     striped
                     hover
-                />
+                /> */}
             )}
 
         </Fragment>

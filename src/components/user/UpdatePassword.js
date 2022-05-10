@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
-import MetaData from '../layout/MetaData'
+import MetaData from '../layouts/MetaData'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePassword, clearErrors } from '../../actions/userActions'
+import { updatePassword, clearErrors } from '../layouts/actions/authActions'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants'
 
 const UpdatePassword = ({ history }) => {

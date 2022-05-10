@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import MetaData from '../layout/MetaData'
-import Loader from '../layout/Loader'
+import MetaData from '../layouts/MetaData'
+import Loader from '../layouts/Loader'
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrderDetails, clearErrors } from '../../actions/orderActions'
+import { getOrderDetails, clearErrors } from '../layouts/actions/orderActions'
 
 const OrderDetails = () => {
 
