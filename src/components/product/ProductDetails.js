@@ -63,23 +63,24 @@ const ProductDetails = () => {
 
         <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                <img src="https://i5.walmartimages.com/asr/1223a935-2a61-480a-95a1-21904ff8986c_1.17fa3d7870e3d9b1248da7b1144787f5.jpeg?odnWidth=undefined&odnHeight=undefined&odnBg=ffffff" alt="sdf" height="500" width="500"/>
+            {/* <img className="d-block w-100" src={product.images.url} alt={product.title} /> */}
             </div>
 
             <div className="col-12 col-lg-5 mt-5">
-                <h3>onn. 32” className HD (720P) LED Roku Smart TV (100012589)</h3>
-                <p id="product_id">Product # sklfjdk35fsdf5090</p>
+                <h3>{product.name}</h3>
+                <p id="product_id">Product # {product.id}</p>
+                {console.log('asd', params.id)}
 
                 <hr />
 
                 <div className="rating-outer">
                     <div className="rating-inner"></div>
                 </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
+                <span id="no_of_reviews">{product.numOfReviews}</span>
 
                 <hr />
 
-                <p id="product_price">$108.00</p>
+                <p id="product_price">€{product.price}</p>
                 <div className="stockCounter d-inline">
                     <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
@@ -87,6 +88,7 @@ const ProductDetails = () => {
 
                     <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                 </div>
+                {console.log(product.stock)}
                 <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
 
                 <hr />
@@ -96,7 +98,7 @@ const ProductDetails = () => {
                 <hr />
 
                 <h4 className="mt-2">Description:</h4>
-                <p>Binge on movies and TV episodes, news, sports, music and more! We insisted on 720p High Definition for this 32" LED TV, bringing out more lifelike color, texture and detail. We also partnered with Roku to bring you the best possible content with thousands of channels to choose from, conveniently presented through your own custom home screen.</p>
+                <p>{product.description}</p>
                 <hr />
 				
 				<button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">

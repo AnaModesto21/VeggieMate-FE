@@ -7,24 +7,27 @@ import {
     MY_ORDERS_REQUEST,
     MY_ORDERS_SUCCESS,
     MY_ORDERS_FAIL,
-    ALL_ORDERS_REQUEST,
-    ALL_ORDERS_SUCCESS,
-    ALL_ORDERS_FAIL,
-    UPDATE_ORDER_SUCCESS,
-    UPDATE_ORDER_REQUEST,
-    UPDATE_ORDER_FAIL,
-    DELETE_ORDER_REQUEST,
-    DELETE_ORDER_SUCCESS,
-    DELETE_ORDER_FAIL,
+    // ALL_ORDERS_REQUEST,
+    // ALL_ORDERS_SUCCESS,
+    // ALL_ORDERS_FAIL,
+    // UPDATE_ORDER_SUCCESS,
+    // UPDATE_ORDER_REQUEST,
+    // UPDATE_ORDER_FAIL,
+    // DELETE_ORDER_REQUEST,
+    // DELETE_ORDER_SUCCESS,
+    // DELETE_ORDER_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
     ORDER_DETAILS_FAIL,
     CLEAR_ERRORS
 } from '../../../constants/orderConstants'
 
-export const createOrder = (order) => async (dispatch, getState) => {
-    try {
+const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
 
+export const createOrder = (order) => async (dispatch, getState) => {
+    
+    try {
+        
         dispatch({ type: CREATE_ORDER_REQUEST })
 
         const config = {
@@ -33,7 +36,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post('/auth/order/new', order, config)
+        const { data } = await axios.post(`${baseURL}auth/order/new`, order, config)
 
         dispatch({
             type: CREATE_ORDER_SUCCESS,
@@ -54,7 +57,7 @@ export const myOrders = () => async (dispatch) => {
 
         dispatch({ type: MY_ORDERS_REQUEST });
 
-        const { data } = await axios.get('/auth/orders/me')
+        const { data } = await axios.get(`${baseURL}auth/orders/me`)
 
         dispatch({
             type: MY_ORDERS_SUCCESS,
@@ -75,7 +78,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 
         dispatch({ type: ORDER_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`/auth/order/${id}`)
+        const { data } = await axios.get(`${baseURL}auth/order/${id}`)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -91,73 +94,73 @@ export const getOrderDetails = (id) => async (dispatch) => {
 }
 
 // Get all orders - ADMIN
-export const allOrders = () => async (dispatch) => {
-    try {
+// export const allOrders = () => async (dispatch) => {
+//     try {
 
-        dispatch({ type: ALL_ORDERS_REQUEST });
+//         dispatch({ type: ALL_ORDERS_REQUEST });
 
-        const { data } = await axios.get(`/auth/admin/orders`)
+//         const { data } = await axios.get(`/auth/admin/orders`)
 
-        dispatch({
-            type: ALL_ORDERS_SUCCESS,
-            payload: data
-        })
+//         dispatch({
+//             type: ALL_ORDERS_SUCCESS,
+//             payload: data
+//         })
 
-    } catch (error) {
-        dispatch({
-            type: ALL_ORDERS_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
+//     } catch (error) {
+//         dispatch({
+//             type: ALL_ORDERS_FAIL,
+//             payload: error.response.data.message
+//         })
+//     }
+// }
 
-// update order
-export const updateOrder = (id, orderData) => async (dispatch) => {
-    try {
+// // update order
+// export const updateOrder = (id, orderData) => async (dispatch) => {
+//     try {
 
-        dispatch({ type: UPDATE_ORDER_REQUEST })
+//         dispatch({ type: UPDATE_ORDER_REQUEST })
 
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         }
 
-        const { data } = await axios.put(`/auth/admin/order/${id}`, orderData, config)
+//         const { data } = await axios.put(`/auth/admin/order/${id}`, orderData, config)
 
-        dispatch({
-            type: UPDATE_ORDER_SUCCESS,
-            payload: data.success
-        })
+//         dispatch({
+//             type: UPDATE_ORDER_SUCCESS,
+//             payload: data.success
+//         })
 
-    } catch (error) {
-        dispatch({
-            type: UPDATE_ORDER_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
+//     } catch (error) {
+//         dispatch({
+//             type: UPDATE_ORDER_FAIL,
+//             payload: error.response.data.message
+//         })
+//     }
+// }
 
-// Delete order
-export const deleteOrder = (id) => async (dispatch) => {
-    try {
+// // Delete order
+// export const deleteOrder = (id) => async (dispatch) => {
+//     try {
 
-        dispatch({ type: DELETE_ORDER_REQUEST })
+//         dispatch({ type: DELETE_ORDER_REQUEST })
 
-        const { data } = await axios.delete(`/auth/admin/order/${id}`)
+//         const { data } = await axios.delete(`/auth/admin/order/${id}`)
 
-        dispatch({
-            type: DELETE_ORDER_SUCCESS,
-            payload: data.success
-        })
+//         dispatch({
+//             type: DELETE_ORDER_SUCCESS,
+//             payload: data.success
+//         })
 
-    } catch (error) {
-        dispatch({
-            type: DELETE_ORDER_FAIL,
-            payload: error.response.data.message
-        })
-    }
-}
+//     } catch (error) {
+//         dispatch({
+//             type: DELETE_ORDER_FAIL,
+//             payload: error.response.data.message
+//         })
+//     }
+// }
 
 
 // Clear Errors

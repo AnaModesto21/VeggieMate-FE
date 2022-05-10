@@ -84,12 +84,79 @@ function App() {
               <Route path="/:id" element={<ProductDetails />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/password/forgot" element={<ForgotPassword />} />
+              <Route path="/password/update" element={<UpdatePassword />} />
               <Route path="/register" element={<Register />} />
-
-              <Route path="/me" element={ <ProtectedRoutes>
-              <Profile />
-              </ProtectedRoutes>         }
+              <Route
+   path="/me"
+   element={
+      <ProtectedRoutes>
+          <Profile />
+       </ProtectedRoutes>
+    }
 />
+<Route
+   path="/me/update"
+   element={
+      <ProtectedRoutes>
+          <UpdateProfile />
+       </ProtectedRoutes>
+    }
+/>
+<Route
+   path="/password/update"
+   element={
+      <ProtectedRoutes>
+          <UpdatePassword />
+       </ProtectedRoutes>
+    }
+/>
+<Route
+   path="/orders/me"
+   element={
+      <ProtectedRoutes>
+          <ListOrders />
+       </ProtectedRoutes>
+    }
+/>
+<Route
+   path="/order/:id"
+   element={
+      <ProtectedRoutes>
+          <ListOrders />
+       </ProtectedRoutes>
+    }   
+/>
+<Route
+   path="/shipping"
+   element={
+      <ProtectedRoutes>
+          <Shipping />
+       </ProtectedRoutes>
+    }   
+/>
+<Route
+   path="/confirm"
+   element={
+      <ProtectedRoutes>
+          <ConfirmOrder />
+       </ProtectedRoutes>
+    }   
+/> 
+<Route
+   path="/success"
+   element={
+      <ProtectedRoutes>
+          <OrderSuccess />
+       </ProtectedRoutes>
+    }   
+/>              
+{stripeApiKey &&
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <ProtectedRoute path="/payment" component={Payment} />
+            </Elements>
+          }
+          
           </Routes>
         </div>
         {!loading && (!isAuthenticated || user.role !== 'admin') && (
