@@ -43,7 +43,7 @@ const Login = () => {
 
     return (
         <Fragment>
-            {loading ? <Loader /> : (
+            
                 <Fragment>
                     <MetaData title={'Login'} />
 
@@ -90,7 +90,7 @@ const Login = () => {
 
 
                 </Fragment>
-            )}
+            
         </Fragment>
     )
 }
