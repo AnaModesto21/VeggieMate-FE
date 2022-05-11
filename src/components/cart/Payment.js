@@ -11,6 +11,10 @@ import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcEl
 
 import axios from 'axios'
 
+import { useParams } from 'react-router-dom'
+import { saveShippingInfo } from '../layouts/actions/cartActions'
+
+
 const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
 
 const options = {
@@ -24,7 +28,7 @@ const options = {
     }
 }
 
-const Payment = ({ history }) => {
+const Payment = () => {
 
     const alert = useAlert();
     const stripe = useStripe();
@@ -111,7 +115,7 @@ const Payment = ({ history }) => {
                     dispatch(createOrder(order))
 
                     return <Navigate to="/success" />;
-                    
+
                 } else {
                     alert.error('There is some issue while payment processing')
                 }

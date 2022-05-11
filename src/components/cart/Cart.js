@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { addItemToCart, removeItemFromCart } from '../layouts/actions/cartActions'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductDetails, clearErrors } from '../layouts/actions/productActions'
+import { Navigate } from "react-router-dom";
 
 
-const Cart = ({ history }) => {
+const Cart = () => {
 
     const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ const Cart = ({ history }) => {
     }
 
     const checkoutHandler = () => {
-        history.push('/login?redirect=shipping')
+        Navigate('/login?redirect=shipping')
     }
 
   return (

@@ -34,17 +34,6 @@ import UpdatePassword from './components/user/UpdatePassword'
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 
-// // Admin Imports
-// import Dashboard from './components/admin/Dashboard'
-// import ProductsList from './components/admin/ProductsList'
-// import NewProduct from './components/admin/NewProduct'
-// import UpdateProduct from './components/admin/UpdateProduct'
-// import OrdersList from './components/admin/OrdersList'
-// import ProcessOrder from './components/admin/ProcessOrder'
-// import UsersList from './components/admin/UsersList'
-// import UpdateUser from './components/admin/UpdateUser'
-// import ProductReviews from './components/admin/ProductReviews'
-
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 
@@ -80,13 +69,14 @@ function App() {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/:id" element={<ProductDetails />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/search/:keyword" element={<Home />} />
               <Route path="/shipping" element={<Shipping />} /> 
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/password/forgot" element={<ForgotPassword />} />
               <Route path="/password/update" element={<UpdatePassword />} />
-              <Route path="/register" element={<Register />} />
+
               <Route
    path="/me"
    element={
