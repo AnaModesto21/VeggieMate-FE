@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
-
+import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 
-const ConfirmOrder = ({ history }) => {
-
+const ConfirmOrder = () => {
+    const navigate = useNavigate();
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
     const { user } = useSelector(state => state.auth)
 
@@ -26,7 +26,7 @@ const ConfirmOrder = ({ history }) => {
         }
 
         sessionStorage.setItem('orderInfo', JSON.stringify(data))
-        history.push('/payment')
+        navigate('/payment');
     }
 
     return (
@@ -48,7 +48,7 @@ const ConfirmOrder = ({ history }) => {
                     <h4 className="mt-4">Your Cart Items:</h4>
 
                     {cartItems.map(item => (
-                        <Fragment>
+                        <Fragment key={item.product}>
                             <hr />
                             <div className="cart-item my-1" key={item.product}>
                                 <div className="row">

@@ -35,9 +35,9 @@ const Cart = () => {
         dispatch(addItemToCart(id, newQty));
       };
 
-    const checkoutHandler = () => {
-        Navigate('/login?redirect=shipping')
-    }
+    // const checkoutHandler = () => {
+    //     Navigate('/login?redirect=shipping')
+    // }
 
     return (
         <Fragment>
@@ -53,7 +53,7 @@ const Cart = () => {
               <div className="row d-flex justify-content-between">
                 <div className="col-12 col-lg-8">
                   {cartItems.map((item) => (
-                    <Fragment>
+                    <Fragment key={item.product}>
                       <hr />
     
                       <div className="cart-item" key={item.product}>
@@ -152,32 +152,7 @@ const Cart = () => {
                     </p>
     
                     <hr />
-                    <button
-                      id="checkout_btn"
-                      className="btn btn-primary btn-block"
-                      onClick={checkoutHandler}
-                    >
-                      Check out
-                    </button>
-                    <hr />
-                    <label htmlFor="city_field" className="mt-2">
-                      Got a coupon 🎫?
-                    </label>
-                    {/* <input
-                      onChange={(e) => setCoupon(e.target.value)}
-                      value={coupon}
-                      type="text"
-                      id="city_field"
-                      className="form-control"
-                    /> */}
-                    <hr />
-                    {/* <button
-                      onClick={applyDiscountCoupon}
-                      id="coupon_btn"
-                      className="btn btn-primary btn-block"
-                    >
-                      Apply Coupon
-                    </button> */}
+                    <Link id="checkout_btn" to="/shipping" className="btn btn-primary btn-block">Check out </Link>
                   </div>
                 </div>
               </div>

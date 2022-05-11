@@ -31,6 +31,8 @@ const Payment = () => {
     const elements = useElements();
     const dispatch = useDispatch();
 
+    const { auth } = useSelector(state => state)
+    console.log('auth', auth);
     const { user } = useSelector(state => state.auth)
     const { cartItems, shippingInfo } = useSelector(state => state.cart);
     const { error } = useSelector(state => state.newOrder)
@@ -71,11 +73,12 @@ const Payment = () => {
 
             const config = {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    //'Authorization': 'Bearer ' + validToken()
                 }
             }
 
-            res = await axios.post(`${baseURL}payment/process`, paymentData, config)
+            res = await axios.post(`${baseURL}payment/payment/process`, paymentData, config)
 
             const clientSecret = res.data.client_secret;
 

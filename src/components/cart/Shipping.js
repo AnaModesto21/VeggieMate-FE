@@ -2,7 +2,7 @@ import React from 'react'
 import { Fragment, useState } from 'react'
 import { countries } from 'countries-list'
 import MetaData from '../layouts/MetaData'
-
+import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom'
 
 import { saveShippingInfo } from '../layouts/actions/cartActions'
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 const Shipping = ({ history }) => {
-
+const navigate = useNavigate();
 const countriesList = Object.values(countries)
 
 const { shippingInfo } = useSelector(state => state.cart)
@@ -27,7 +27,7 @@ const submitHandler = (e) => {
     e.preventDefault()
 
     dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
-    history.push('/confirm')
+    navigate('/confirm');
 }
 
   return (
@@ -74,14 +74,10 @@ const submitHandler = (e) => {
 
                         <div className="form-group">
                             <label htmlFor="postal_code_field">Postal Code</label>
-                            <input
-                                type="number"
-                                id="postal_code_field"
-                                className="form-control"
+                            <input id="postal_code_field" className="form-control"
                                 value={postalCode}
                                 onChange={(e) => setPostalCode(e.target.value)}
-                                required
-                            />
+                                required type="text" inputMode="numeric" pattern="^(?(^0000(|-000))|(\d{4}(|-\d{3})))$"/>
                         </div>
 
                         <div className="form-group">

@@ -8,7 +8,8 @@ import MetaData from '../layouts/MetaData'
 const Profile = () => {
 
     const { user, loading } = useSelector(state => state.auth)
-
+    console.log('state.auth', user);
+    console.log('loading', loading);
     return (
         <Fragment>
             {loading ? <Loader /> : (
