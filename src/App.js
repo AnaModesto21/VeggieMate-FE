@@ -34,28 +34,28 @@ import UpdatePassword from './components/user/UpdatePassword'
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
+// import { Elements } from '@stripe/react-stripe-js'
+// import { loadStripe } from '@stripe/stripe-js'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Profile from './components/user/Profile'
 
 function App() {
 
-  const [stripeApiKey, setStripeApiKey] = useState('');
+  // const [stripeApiKey, setStripeApiKey] = useState('');
 
-  useEffect(() => {
-    store.dispatch(loadUser())
-    const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
-    async function getStripApiKey() {
-      const { data } = await axios.get(`${baseURL}stripeapi`);
+  // useEffect(() => {
+  //   store.dispatch(loadUser())
+  //   const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
+  //   async function getStripApiKey() {
+  //     const { data } = await axios.get(`${baseURL}stripeapi`);
 
-      setStripeApiKey(data.stripeApiKey)
-    }
+  //     setStripeApiKey(data.stripeApiKey)
+  //   }
 
-    getStripApiKey();
+  //   getStripApiKey();
 
-  }, [])
+  // }, [])
 
   const { user, isAuthenticated, loading } = useSelector(state => state.auth)
 
@@ -133,7 +133,7 @@ function App() {
        </ProtectedRoutes>
     }   
 /> 
-<Route
+{/* <Route
    path="/success"
    element={
       <ProtectedRoutes>
@@ -145,7 +145,7 @@ function App() {
             <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoutes path="/payment" component={Payment} />
             </Elements>
-          }
+          } */}
 
           </Routes>
         </div>
