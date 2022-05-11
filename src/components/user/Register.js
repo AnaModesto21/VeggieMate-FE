@@ -38,7 +38,7 @@ const Register = () => {
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error, navigate])
+    }, [dispatch, alert, isAuthenticated, error, navigate, user])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -47,30 +47,14 @@ const Register = () => {
         formData.set('name', name);
         formData.set('email', email);
         formData.set('password', password);
-        formData.set('avatar', avatar);
+        // formData.set('avatar', avatar);
 
         dispatch(register(formData));
     }
 
     const onChange = e => {
-        if (e.target.name === 'avatar') {
-
-            const reader = new FileReader();
-
-            reader.onload = () => {
-                if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result)
-                    setAvatar(reader.result)
-                }
-            }
-
-            reader.readAsDataURL(e.target.files[0])
-
-        } else {
             setUser({ ...user, [e.target.name]: e.target.value })
-        }
     }
-
     return (
         <Fragment>
 
@@ -117,7 +101,7 @@ const Register = () => {
                             />
                         </div>
 
-                        <div className='form-group'>
+                        {/* <div className='form-group'>
                             <label htmlFor='avatar_upload'>Avatar</label>
                             <div className='d-flex align-items-center'>
                                 <div>
@@ -143,7 +127,7 @@ const Register = () => {
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <button
                             id="register_button"
