@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import { MDBDataTable } from 'mdbreact'
+import { MDBDataTable } from 'mdbreact'
 
 import MetaData from '../layouts/MetaData'
 import Loader from '../layouts/Loader'
@@ -83,13 +83,13 @@ const ListOrders = () => {
             <h1 className="my-5">My Orders</h1>
 
             {loading ? <Loader /> : (
-                {/* <MDBDataTable
+                <MDBDataTable
                     data={setOrders()}
                     className="px-3"
                     bordered
                     striped
                     hover
-                /> */}
+                />
             )}
 
         </Fragment>
