@@ -11,10 +11,6 @@ import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcEl
 
 import axios from 'axios'
 
-import { useParams } from 'react-router-dom'
-import { saveShippingInfo } from '../layouts/actions/cartActions'
-
-
 const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
 
 const options = {
@@ -82,8 +78,6 @@ const Payment = () => {
             res = await axios.post(`${baseURL}payment/process`, paymentData, config)
 
             const clientSecret = res.data.client_secret;
-
-            console.log(clientSecret);
 
             if (!stripe || !elements) {
                 return;

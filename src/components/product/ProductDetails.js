@@ -19,12 +19,15 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
     const alert = useAlert();
-    const { loading, error, product } = useSelector(state => state.productDetails)
+    
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const { error: reviewError, success } = useSelector(state => state.newReview)
     const params = useParams()
     
+    const { loading, error, product } =
+    useSelector(state => state.productDetails)
+
     useEffect(()=> {
         console.log('asd', params.id)
         dispatch(getProductDetails(params.id))
@@ -39,7 +42,7 @@ const ProductDetails = () => {
         }
 
         if (success) {
-            alert.success('Reivew posted successfully')
+            alert.success('Review posted successfully')
             dispatch({ type: NEW_REVIEW_RESET })
         }
     }, [dispatch, alert, error, params.id, reviewError, success])
