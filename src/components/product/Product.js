@@ -20,7 +20,7 @@ const Product = ({ product, col }) => {
                         <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
                     </div>
                     <p className="card-text">${product.price}</p>
-                    <Link to={`/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
+                    <Link to={`/products/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>
         </div>
