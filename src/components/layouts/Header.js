@@ -25,10 +25,10 @@ const Header = () => {
     return (
         <Fragment>
             <nav className="navbar row">
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-2">
                     <div className="navbar-brand">
                         <Link to="/">
-                            <img src="/images/1.png" alt='pageLogo'/>
+                            <img src="/images/VeggieMate.jpg" alt='pageLogo' class="img-thumbnail"/>
                         </Link>
                     </div>
                 </div>
@@ -61,10 +61,6 @@ const Header = () => {
                             </Link>
 
                             <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-
-                                {user && user.role === 'admin' && (
-                                    <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
-                                )}
                                 <Link className="dropdown-item" to="/orders/me">Orders</Link>
                                 <Link className="dropdown-item" to="/me">Profile</Link>
                                 <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>

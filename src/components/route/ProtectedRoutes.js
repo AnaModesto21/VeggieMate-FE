@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../layouts/actions/authActions";
  
-const ProtectedRoute = ({ children, isAdmin }) => {
+const ProtectedRoute = ({ children }) => {
   const {
     isAuthenticated = false,
     loading = true,
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children, isAdmin }) => {
   if (loading) return <h1>loading...</h1>;
  
   if (!loading && isAuthenticated) {
-    if (isAdmin === true && user.role !== "admin") {
+    if (user.role !== "admin") {
       return <Navigate to="/" />;
     }
     return children;
