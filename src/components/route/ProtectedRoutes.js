@@ -6,7 +6,7 @@ import { loadUser } from "../layouts/actions/authActions";
 const ProtectedRoute = ({ children }) => {
   const {
     isAuthenticated = false,
-    //loading = true,
+    loading = true,
     user,
   } = useSelector((state) => state.auth);
  
@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
     if (!user) {
       dispatch(loadUser());
     }
-  }, [isAuthenticated, dispatch, user]);
+  }, [isAuthenticated, loading, dispatch, user]);
  
   //if (loading) return <h1>loading...</h1>;
  

@@ -76,8 +76,7 @@ const UpdatePassword = ({ history }) => {
                             />
                         </div>
 
-                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3" 
-                        disabled={loading ? true : false} >Update Password</button>
+                        <button type="submit" className="btn update-btn btn-block mt-4 mb-3" >Update Password</button>
                     </form>
                 </div>
             </div>

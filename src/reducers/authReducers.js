@@ -113,7 +113,8 @@ export const userReducer = (state = {}, action) => {
         case DELETE_USER_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                isDeleted: false
             }
 
         case UPDATE_PROFILE_SUCCESS:
@@ -126,6 +127,7 @@ export const userReducer = (state = {}, action) => {
             }
 
         case DELETE_USER_SUCCESS:
+            console.log('CALLED', action); 
             return {
                 ...state,
                 loading: false,
@@ -138,12 +140,6 @@ export const userReducer = (state = {}, action) => {
             return {
                 ...state,
                 isUpdated: false
-            }
-
-        case DELETE_USER_RESET:
-            return {
-                ...state,
-                isDeleted: false
             }
 
         case UPDATE_PROFILE_FAIL:
