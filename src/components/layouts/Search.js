@@ -18,7 +18,7 @@ const Search = () => {
 
     return (
         <form onSubmit={searchHandler} >
-            <div className="input-group">
+            <div className="input-group" id='bar'>
                 <input
                     type="text"
                     id="search_field"

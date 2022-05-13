@@ -28,21 +28,14 @@ const Header = () => {
                 <div className="col-12 col-md-2">
                     <div className="navbar-brand">
                         <Link to="/">
-                            <img src="/images/VeggieMate.jpg" alt='pageLogo' id="logopage" class="img-thumbnail"/>
+                            <img src="/images/VeggieMate.png" alt='pageLogo' width='170' class="img-thumbnail"/>
                         </Link>
                     </div>
                 </div>
-                <div className="col-12 col-md-6 mt-2 mt-md-0">
+                <div className="col-12 col-md-5" id='searchform'>
           <Search />
         </div>
-        
-                <div className="col-12 col-md-6 mt-2 mt-md-0">
-                <Routes>
-                    <Route render={({ history }) => <Search history={history} />} />
-                </Routes>
-                </div>
-
-                <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+                <div className="col-12 col-md-5 text-right" id="stuff">
                 {/* <Link to="/login" className="btn ml-10" id="login_btn">Login</Link> */}
                 <Link to="/cart" style={{ textDecoration: 'none' }} >
                 <span id="cart" className="ml-3">Cart</span>
@@ -51,7 +44,7 @@ const Header = () => {
 {console.log('user', user)}
                     {user ? (
                         <div className="ml-4 dropdown d-inline">
-                            <Link to="#!" className="btn dropdown-toggle text-white mr-4" 
+                            <Link to="#!" className="btn dropdown-toggle text-white mr-0" 
                             type="button" 
                             id="dropDownMenuButton" 
                             data-toggle="dropdown" 

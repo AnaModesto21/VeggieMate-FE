@@ -36,8 +36,7 @@ nav {
 }
 
 .input-group {
-  width: 90%;
-  margin-right: 35%;
+  width: 60%;
 }
 
 #search_field {
@@ -60,6 +59,16 @@ nav {
 #name{
   font-size: 1.5rem;
 }
+
+#bar{
+  width: 40rem;
+  padding-right: 10px;
+}
+
+#searchform{
+    margin-top: 125px;
+}
+
 #cart_count {
   background-color: whitesmoke;
   padding: 0.2rem 0.5rem;
@@ -184,7 +193,12 @@ footer {
 .redColor {
   color: red;
 }
+#stuff {
+  margin-top: 100px;
+  margin-bottom: 0px;
+  padding-right: 30px;
 
+}
 .greenColor {
   color: green;
 }

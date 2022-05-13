@@ -30,7 +30,7 @@ export const getProducts = ( keyword = '', currentPage = 1 ) => async (dispatch)
 
         // let link = `products?keyword=${keyword}&page=${currentPage}}`
 
-        const { data } = await axios.get(`${baseURL}?page=${currentPage}`)
+        const { data } = await axios.get(`${baseURL}?keyword=${keyword}&page=${currentPage}`)
 
 
         dispatch ({
