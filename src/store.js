@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { productsReducer, newProductReducer, productReducer, productDetailsReducer, newReviewReducer, productReviewsReducer, reviewReducer } from '././reducers/productsReducer'
@@ -41,5 +42,12 @@ let initialState = {
 
 const middlware = [thunk];
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middlware)))
+// const store = configureStore({
+//     reducer: {
+//         reducer,
+//       todos: todosReducer,
+//       filters: filtersReducer
+//     }
+//    })
 
 export default store;

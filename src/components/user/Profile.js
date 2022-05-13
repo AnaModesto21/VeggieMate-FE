@@ -1,13 +1,43 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { useEffect } from "react";
+import { deleteUser, clearErrors } from '../layouts/actions/authActions'
+import { DELETE_USER_RESET } from '../../constants/userConstants'
 
 import Loader from '../layouts/Loader'
 import MetaData from '../layouts/MetaData'
 
 const Profile = () => {
 
-    const { user, loading } = useSelector(state => state.auth)
+    
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+     const { error: isDeleted } = useSelector(
+    (state) => state.product,
+  )
+  const { loading, error } = useSelector((state) => state.products)
+    useEffect(() => {
+        dispatch(deleteUser())
+    
+        if (error) {
+          alert.error(error)
+          dispatch(clearErrors())
+        }
+    
+        if (isDeleted) {
+          alert.success('User deleted successfully')
+          navigate('/')
+          dispatch({ type: DELETE_USER_RESET })
+        }
+      }, [dispatch, error, isDeleted, navigate])
+    
+      const deleteUserHandler = (id) => {
+        dispatch(deleteUser(id))
+      }
+
+    const { user } = useSelector(state => state.auth)
     console.log('state.auth', user);
     console.log('loading', loading);
     return (
@@ -36,7 +66,12 @@ const Profile = () => {
 
                             <h4>Joined On</h4>
                             <p>{String(user.createdAt).substring(0, 10)}</p>
-
+                            <button
+                                className="btn btn-danger py-1 px-2 ml-2"
+                                onClick={() => deleteUserHandler(user._id)}
+                                >
+                                Delete profile <i className="fa fa-trash"></i>
+                                </button>
                             
                                 <Link to="/orders/me" className="btn btn-danger btn-block mt-5">
                                     My Orders
