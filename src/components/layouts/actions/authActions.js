@@ -160,7 +160,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`${baseURL}auth/me/me/update`, userData, config)
+        const { data } = await axios.put(`${baseURL}auth/me/update`, userData, config)
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
