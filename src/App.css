@@ -53,17 +53,20 @@ nav {
   }
 
 #cart {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: white;
+  padding-right: 5px;
 }
-
+#name{
+  font-size: 1.5rem;
+}
 #cart_count {
   background-color: whitesmoke;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   color: black;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* Home page */
@@ -349,8 +352,8 @@ footer {
 
 .avatar-nav {
   margin-right: 0.6rem;
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 3rem;
+  width: 3rem;
 }
 
 /* Checkout Steps */

@@ -56,6 +56,9 @@ export const login = (email, password) => async (dispatch) => {
 
         const { data } = await axios.post(`${baseURL}auth/login`, { email, password }, config)
 
+        console.log('token', data.token);
+        localStorage.setItem('token', data.token);
+
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
@@ -105,8 +108,14 @@ export const loadUser = () => async (dispatch) => {
 
         dispatch({ type: LOAD_USER_REQUEST })
 
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }
 
-        const { data } = await axios.get(`${baseURL}auth/me`)
+        const { data } = await axios.get(`${baseURL}auth/me`, config)
 
         dispatch({
             type: LOAD_USER_SUCCESS,

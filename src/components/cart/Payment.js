@@ -2,11 +2,11 @@ import React, { Fragment, useEffect } from 'react'
 
 import MetaData from '../layouts/MetaData'
 import CheckoutSteps from './CheckoutSteps'
-import { Navigate } from "react-router-dom";
-import { useAlert } from 'react-alert'
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAlert,  } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, clearErrors } from '../layouts/actions/orderActions'
-
+import { CLEAR_CART } from "../../constants/cartConstants";
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 
 import axios from 'axios'
@@ -25,7 +25,7 @@ const options = {
 }
 
 const Payment = () => {
-
+    const navigate = useNavigate();
     const alert = useAlert();
     const stripe = useStripe();
     const elements = useElements();
@@ -63,7 +63,7 @@ const Payment = () => {
         amount: Math.round(orderInfo.totalPrice * 100)
     }
 
-    const submitHandler = async (e) => {
+    const submitHandler = async (e, getState) => {
         e.preventDefault();
 
         document.querySelector('#pay_btn').disabled = true;
@@ -74,7 +74,7 @@ const Payment = () => {
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
-                    //'Authorization': 'Bearer ' + validToken()
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             }
 
@@ -108,10 +108,10 @@ const Payment = () => {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status
                     }
-
-                    dispatch(createOrder(order))
-
-                    return <Navigate to="/success" />;
+                    dispatch(createOrder(order, CLEAR_CART))
+                    
+                    navigate('/success');
+                    //<Navigate to="/success" />;
 
                 } else {
                     alert.error('There is some issue while payment processing')
@@ -121,7 +121,7 @@ const Payment = () => {
 
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
-            alert.error(error.response.data.message)
+            alert.error('There is some issue while payment processing')
         }
     }
 
@@ -171,7 +171,7 @@ const Payment = () => {
                             type="submit"
                             className="btn btn-block py-3"
                         >
-                            Pay {` - ${orderInfo && orderInfo.totalPrice}`}
+                            Pay {` - ${orderInfo && orderInfo.totalPrice}`}€
                         </button>
 
                     </form>

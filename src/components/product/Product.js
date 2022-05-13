@@ -6,7 +6,7 @@ const Product = ({ product, col }) => {
         <div className={`col-sm-12 col-md-6 col-lg-${col} my-3`}>
             <div className="card p-3 rounded">
                 <img
-                    className="card-img-top mx-auto"
+                    className="card-img-top mx-auto px-5"
                     src={product.images[0].url} alt={product.name}
                 />
                 <div className="card-body d-flex flex-column">
@@ -19,7 +19,7 @@ const Product = ({ product, col }) => {
                         </div>
                         <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
                     </div>
-                    <p className="card-text">${product.price}</p>
+                    <p className="card-text">€{product.price}</p>
                     <Link to={`/products/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>

@@ -28,7 +28,7 @@ import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
 
 // Auth or User imports
-
+import Search from "./components/layouts/Search";
 import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
@@ -48,9 +48,16 @@ function App() {
     store.dispatch(loadUser());
     const asd = `${process.env.STRIPE_API_KEY}`;
   console.log('ASD', asd);
+  const config = {
+   headers: {
+       'Content-Type': 'application/json',
+       'Authorization': 'Bearer ' + localStorage.getItem('token')
+   }
+}
     const baseURL = `${process.env.REACT_APP_PROJECTS_API}`;
+
     async function getStripApiKey() {
-      const { data } = await axios.get(`${baseURL}payment/stripeapi`);
+      const { data } = await axios.get(`${baseURL}payment/stripeapi`, config);
 
       setStripeApiKey(data.stripeApiKey);
     }
@@ -85,7 +92,7 @@ function App() {
               }
             />
             <Route
-              path="/me/update"
+              path="/me/update "
               element={
                 <ProtectedRoute>
                   <UpdateProfile />
@@ -112,7 +119,7 @@ function App() {
               path="/order/:id"
               element={
                 <ProtectedRoute>
-                  <ListOrders />
+                  <OrderDetails />
                 </ProtectedRoute>
               }
             />

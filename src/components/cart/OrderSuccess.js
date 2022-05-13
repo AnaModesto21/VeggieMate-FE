@@ -10,7 +10,7 @@ const OrderSuccess = () => {
 
             <div className="row justify-content-center">
                 <div className="col-6 mt-5 text-center">
-                    <img className="my-5 img-fluid d-block mx-auto" src="/images/order_success.png" alt="Order Success" width="200" height="200" />
+                    <img className="my-5 img-fluid d-block mx-auto" src="/images/confirmation-approval-order-operation-payment-successful-completion-girl-confirms-business-success-man-hand-shows-class-239104068.jpg" alt="Order Success" width="200" height="200" />
 
                     <h2>Your Order has been placed successfully.</h2>
 

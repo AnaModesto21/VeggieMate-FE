@@ -28,11 +28,14 @@ const Header = () => {
                 <div className="col-12 col-md-2">
                     <div className="navbar-brand">
                         <Link to="/">
-                            <img src="/images/VeggieMate.jpg" alt='pageLogo' class="img-thumbnail"/>
+                            <img src="/images/VeggieMate.jpg" alt='pageLogo' id="logopage" class="img-thumbnail"/>
                         </Link>
                     </div>
                 </div>
-
+                <div className="col-12 col-md-6 mt-2 mt-md-0">
+          <Search />
+        </div>
+        
                 <div className="col-12 col-md-6 mt-2 mt-md-0">
                 <Routes>
                     <Route render={({ history }) => <Search history={history} />} />
@@ -40,7 +43,7 @@ const Header = () => {
                 </div>
 
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                <Link to="/login" className="btn ml-10" id="login_btn">Login</Link>
+                {/* <Link to="/login" className="btn ml-10" id="login_btn">Login</Link> */}
                 <Link to="/cart" style={{ textDecoration: 'none' }} >
                 <span id="cart" className="ml-3">Cart</span>
                   <span className="ml-1" id="cart_count">{cartItems.length}</span>
@@ -62,7 +65,7 @@ const Header = () => {
                                         className="rounded-circle"
                                     />
                                 </figure>
-                                <span>{user && user.name}</span>
+                                <span id='name'>{user && user.name}</span>
                             </Link>
 
                             <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">

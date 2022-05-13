@@ -1,19 +1,19 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
 import MetaData from '../layouts/MetaData'
-
+import { useNavigate } from "react-router-dom";
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProfile, loadUser, clearErrors } from '../layouts/actions/authActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 
-const UpdateProfile = ({ history }) => {
+const UpdateProfile = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [avatar, setAvatar] = useState('')
     const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg')
-
+    const navigate = useNavigate();
     const alert = useAlert();
     const dispatch = useDispatch();
 
@@ -37,14 +37,14 @@ const UpdateProfile = ({ history }) => {
             alert.success('User updated successfully')
             dispatch(loadUser());
 
-            //history.push('/me')
+            navigate('/me')
 
             dispatch({
                 type: UPDATE_PROFILE_RESET
             })
         }
 
-    }, [dispatch, alert, error, history, isUpdated, user])
+    }, [dispatch, alert, error, isUpdated, navigate, user])
 
     const submitHandler = (e) => {
         e.preventDefault();

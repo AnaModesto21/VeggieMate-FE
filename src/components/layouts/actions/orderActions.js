@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { clearCart } from './cartActions';
 import {
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_SUCCESS,
@@ -32,15 +32,27 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         }
 
-        const { data } = await axios.post(`${baseURL}auth/order/new`, order, config)
+        const { data } = await axios.post(`${baseURL}order/order/new`, order, config)
+
+        console.log(
+            'localStorage.getItem("cartItems"',
+            localStorage.getItem("cartItems")
+          );
+          localStorage.setItem("cartItems", []);
+          console.log(
+            'localStorage.getItem("cartItems"',
+            localStorage.getItem("cartItems")
+          );
 
         dispatch({
             type: CREATE_ORDER_SUCCESS,
-            payload: data
+            payload: data,
+            
         })
 
     } catch (error) {
@@ -57,7 +69,14 @@ export const myOrders = () => async (dispatch) => {
 
         dispatch({ type: MY_ORDERS_REQUEST });
 
-        const { data } = await axios.get(`${baseURL}auth/orders/me`)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+
+        const { data } = await axios.get(`${baseURL}order/orders/me`, config)
 
         dispatch({
             type: MY_ORDERS_SUCCESS,
@@ -78,7 +97,14 @@ export const getOrderDetails = (id) => async (dispatch) => {
 
         dispatch({ type: ORDER_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`${baseURL}auth/order/${id}`)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+
+        const { data } = await axios.get(`${baseURL}order/order/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,

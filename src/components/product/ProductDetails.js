@@ -14,8 +14,6 @@ import Loader from "../layouts/Loader";
 import MetaData from "../layouts/MetaData";
 import { addItemToCart } from "../layouts/actions/cartActions";
 
-// import ListReviews from '../review/ListReviews'
-
 const ProductDetails = () => {
   const { user } = useSelector((state) => state.auth);
   const [quantity, setQuantity] = useState(1);
@@ -169,7 +167,7 @@ const ProductDetails = () => {
 
               <hr />
 
-              <p id="product_price">${product.price}</p>
+              <p id="product_price">€{product.price}</p>
               <div className="stockCounter d-inline">
                 <span className="btn btn-danger minus" onClick={decreaseQty}>
                   -
@@ -213,9 +211,6 @@ const ProductDetails = () => {
               <h4 className="mt-2">Description:</h4>
               <p>{product.description}</p>
               <hr />
-              <p id="product_seller mb-3">
-                Sold by: <strong>{product.seller}</strong>
-              </p>
 
               {user ? (
                 <button
