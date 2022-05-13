@@ -36,7 +36,7 @@ const Header = () => {
           <Search />
         </div>
                 <div className="col-12 col-md-5 text-right" id="stuff">
-                <Link to="/login" className="btn ml-10" id="login_btn">Login</Link>
+                {/* <Link to="/login" className="btn ml-10" id="login_btn">Login</Link> */}
                 <Link to="/cart" style={{ textDecoration: 'none' }} >
                 <span id="cart" className="ml-3">Cart</span>
                   <span className="ml-1" id="cart_count">{cartItems.length}</span>
@@ -73,7 +73,7 @@ const Header = () => {
 
                         </div>
 
-                    ) : ( !user && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link> )
+                    ) : ( !loading && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link> )
                     } 
 
 
