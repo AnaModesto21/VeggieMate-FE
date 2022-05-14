@@ -71,7 +71,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <div className="container container-fluid">
+        <div className="container container-fluid mt-20">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products/:id" element={<ProductDetails />} />

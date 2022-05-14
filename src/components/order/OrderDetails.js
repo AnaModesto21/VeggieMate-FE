@@ -37,7 +37,7 @@ const OrderDetails = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <div className="row d-flex justify-content-between">
-                        <div className="col-12 col-lg-8 mt-5 order-details">
+                        <div className="col-12 col-lg-8 mt-1 order-details">
 
                             <h1 className="my-5">Order # {order._id}</h1>
 

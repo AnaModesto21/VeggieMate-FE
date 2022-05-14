@@ -33,9 +33,10 @@ const submitHandler = (e) => {
   return (
       <Fragment>
         <MetaData title={'Shipping info'} />
-        <div className="col-10 col-lg-5">
+        <div className="row wrapper mt-1">
+        <div className="col-10 col-lg-5 mt-0">
                     <form className="shadow-lg" onSubmit={submitHandler}>
-                        <h1 className="mb-4">Shipping Info</h1>
+                        <h1 className="mb-2 mt-2">Shipping Info</h1>
                         <div className="form-group">
                             <label htmlFor="address_field">Address</label>
                             <input
@@ -108,6 +109,7 @@ const submitHandler = (e) => {
                             CONTINUE
                             </button>
                     </form>
+                </div>
                 </div>
       </Fragment>
   )
