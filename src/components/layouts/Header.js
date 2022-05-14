@@ -25,7 +25,7 @@ const Header = () => {
     return (
         <Fragment>
             <nav className="navbar row">
-                <div className="col-12 col-md-2">
+                <div className="col-12 col-md-2 ">
                     <div className="navbar-brand">
                         <Link to="/">
                             <img src="/images/VeggieMate.png" alt='pageLogo' width='170' class="img-thumbnail"/>

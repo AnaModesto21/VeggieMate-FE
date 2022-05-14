@@ -44,8 +44,7 @@ nav {
 }
 
 #search_field {
-  height: 2.4rem;
-  padding: 1rem;
+  max-width:100%;
 }
 
 #login_btn,
